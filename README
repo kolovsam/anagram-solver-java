@@ -1,0 +1,62 @@
+     _|     _|     _|     _|       _|_|_|  _|_|_|       _|     _|    _|
+   _|  _|   _|_|   _|   _|  _|   _|        _|    _|   _|  _|   _|_|_|_|
+  _|    _|  _|  _| _|  _|    _|  _|  _|_|  _|_|_|    _|    _|  _| _| _|
+  _|_|_|_|  _|   _|_|  _|_|_|_|  _|    _|  _|   _|   _|_|_|_|  _|    _|
+  _|    _|  _|     _|  _|    _|    _|_|_|  _|    _|  _|    _|  _|    _|
++----------------------------------------------------------------------+
+Made by: Sam(antha) Kolovson
+
+Algorithm Description
+---------------------
+My algorithm is centered around an ArrayList of Word objects. A Word contains two instance variables: 1) The dictionary word (ex. "stop"), 2) The dictionary word sorted alphabetically by letter (ex. "opst"). Each Word's "sorted word" is the key by which the anagram classes will be made.
+First my algorithm reads in the dictionary to an ArrayList of Words. As each dictionary word is taken in, it is put into a Word object which immediately sorts the word and stores the key. When this is finished the ArrayList contains the entire dictionary as Word objects.
+Next the ArrayList is sorted by each Word's "sorted word". This will result in all the anagrams coming together within the ArrayList. For example, stop, opts, tops, and pots will all be next to each other. This allows all the anagram classes to be easily extracted in one final pass through the array.
+
+Proof of Correctness
+--------------------
+My algorithm produces the correct answer because no two dictionary words will have the same "sorted word" unless they are anagrams of each other. Each key is unique to each anagram class. Using the key, it is easy to compare and find the anagram classes. 
+
+Run Time Analysis
+-----------------
+n = # of words in the dictionary
+l = # of letters per word
+
+A = Read in the dictionary = O(n)
+B = Sort each word = O(llogl)
+C = Sort ArrayList of Words = O(nlogn)
+D = Extract anagram classes = O(n)
+E = Output anagrams = O(n)
+
+Total Time = A*B + C + D + E = nllogl + nlogn + 2n
+
+Actual Run Time
+---------------
+Machine: MacBook Pro from 2012. Running OSX 10.8.5.
+
+Time for dict1: 
+real	0m1.354s
+user	0m2.479s
+sys	    0m0.157s
+
+Time for dict2:
+real	0m51.815s
+user	2m31.048s
+sys	    0m5.920s
+
+Solution
+--------
+dict1 contains 67,605 anagrams.
+dict2 contains 320,750 anagrams.
+
+All anagram classes in anagram1 that contain more than 5 words:
+ardeb, barde, beard, bread, debar, debra
+caret, cater, crate, react, recta, trace
+leapt, lepta, palet, petal, plate, pleat
+least, setal, slate, stale, steal, stela, teals
+elva, lave, leva, vale, veal, vela
+aril, lair, liar, lira, rail, rial
+reins, resin, rinse, risen, serin, siren
+luster, lustre, result, rustle, sutler, ulster	
+
+
+
